@@ -1,0 +1,28 @@
+freeipmi (1.1.5-1) unstable; urgency=low
+
+  * Config files were moved under /etc/freeipmi.  Legacy location (under
+    /etc) is supported only for backwards compatibility.  Please migrate
+    your changes and remove configuration files from legacy locations.
+  * ipmimonitoring tool was removed -- superseded by ipmi-sensors
+    and the new --output-sensor-state option (thin wrapper
+    /usr/sbin/ipmimonitoring is provided)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 04 Jun 2012 15:46:08 -0400
+
+freeipmi (0.8.10-1) experimental; urgency=low
+
+  Upstream has switched from CVS to SVN.  Since target SVN seemed to lack any
+  history of merging, I had decided to revert to classical way to package for
+  Debian based on tarballs.  Thus do not expect complete development history
+  upon checkout.  As a consequence I  have abandoned any previous history of
+  Debian packaging, and recreated Debian packaging repository use
+  git-import-dscs --debsnap.  Please remove any previous debcheckout of
+  freeipmi you might have.
+
+  To stay consistent with upstream, following init.d/default/logrotate.d
+  files for freeipmi-bmc-watchdog were renamed accordingly (with handling
+  of renames done by dpkg-maintscript-helper mv_conffile in debhelper
+  scripts).
+  Please verify that your changes to corresponding files were preserved.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 02 Nov 2010 00:42:46 -0400

@@ -1,0 +1,5 @@
+usr/lib/libipmiconsole.a
+usr/lib/libipmiconsole.so
+usr/include/ipmiconsole.h
+usr/lib/pkgconfig/libipmiconsole*
+usr/share/man/man3/libipmiconsole.3

@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+dpkg-maintscript-helper mv_conffile /etc/ipmidetectd.conf /etc/freeipmi/ipmidetectd.conf 0.8.12-3 -- "$@"
+
+if [ "$1" = "configure" ] && dpkg --compare-versions "$2" "lt" "1.4.4-1.1"; then
+    DOCDIR=/usr/share/doc/freeipmi-ipmidetect
+    DOCLINK=/usr/share/doc/freeipmi-common
+
+    if [ -d $DOCDIR ] && [ ! -L $DOCDIR ] ; then
+        rmdir $DOCDIR
+        ln -s $DOCLINK $DOCDIR
+    fi
+fi
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,387 @@
+freeipmi (1.4.11-1.1ubuntu4) artful; urgency=medium
+
+  * Use kernel DMI table interface, when available, instead of trolling
+    /dev/mem to avoid a crash on ARM. LP: #1699933.
+
+ -- dann frazier <dann.frazier@canonical.com>  Wed, 28 Jun 2017 13:26:09 -0600
+
+freeipmi (1.4.11-1.1ubuntu3) zesty; urgency=medium
+
+  * Add ipv6 ipmi-discovery. LP: #1645912.  See also:
+    https://github.com/chu11/freeipmi-mirror/pull/12/commits/32721f88cd37aa4ca1564c243669f96628089986
+
+ -- LaMont Jones <lamont@canonical.com>  Tue, 24 Jan 2017 16:22:05 -0700
+
+freeipmi (1.4.11-1.1ubuntu2) zesty; urgency=medium
+
+  * Add IPv6 support to ipmipower.  This partially addresses lp bug 1618543.
+
+ -- LaMont Jones <lamont@canonical.com>  Wed, 23 Nov 2016 08:17:27 -0700
+
+freeipmi (1.4.11-1.1ubuntu1) zesty; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - debian/rules: Build with "-pie,-bindnow"
+    - Use dh-autoreconf to update libtool for ppc64el.
+    - Fix dso linking on the convenience library.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 20 Oct 2016 23:07:23 -0700
+
+freeipmi (1.4.11-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix "not binNMU safe" (Closes: #829085) by making freeipmi-common
+    arch:any instead of arch:all. A better fix can be found later if required.
+
+ -- Vincent Danjean <vdanjean@debian.org>  Mon, 05 Sep 2016 09:55:48 +0200
+
+freeipmi (1.4.11-1ubuntu1) xenial; urgency=low
+
+  * Merge from Debian unstable (LP: #1527685).  Remaining changes:
+    - debian/rules: Build with "-pie,-bindnow"
+    - Use dh-autoreconf to update libtool for ppc64el.
+    - Fix dso linking on the convenience library.
+  * Dropped changes, included upstream:
+    - debian/patches/0002_excel_when_opening_tmp.patch: Open files with
+      O_EXCL.
+    - debian/patches/fix-Wunused-result.patch: Resolve -Wunused-result's
+      warnings, by checking for non-0 return. 
+    - debian/patches/Retry-ssif-reads-as-needed.patch: Retry SSIF reads
+      as needed
+    - debian/patches/freeipmi-uefi.patch: Fix ipmi-locate on non ia64
+      architectures.
+    - Don't probe the legacy SMBIOS address in /dev/mem on ARM platforms.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Thu, 24 Dec 2015 22:17:36 -0600
+
+freeipmi (1.4.11-1) unstable; urgency=medium
+
+  * [186d83b] Merge tag 'upstream/1.4.11'
+    Upstream version 1.4.11
+  * [95cfc3a] Updating symbols file.
+
+ -- Bernd Zeimetz <bzed@debian.org>  Wed, 25 Nov 2015 21:40:35 +0100
+
+freeipmi (1.4.9-1) unstable; urgency=medium
+
+  * Fresh upstream release
+    - removes duplicate entry from manpage (Closes: #781633)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 01 Jul 2015 09:52:35 -0400
+
+freeipmi (1.4.5-3) unstable; urgency=medium
+
+  * ACK and re-include NMU 1.4.4-1.2
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 08 Oct 2014 10:15:25 -0400
+
+freeipmi (1.4.5-2) unstable; urgency=medium
+
+  * Return to using /etc/logrotate.d/bmc-watchdog (Closes: #763136)
+
+ -- Ferenc Wágner <wferi@niif.hu>  Tue, 07 Oct 2014 10:21:42 +0200
+
+freeipmi (1.4.5-1) unstable; urgency=medium
+
+  * [7e02411b] Merge tag 'upstream/1.4.5'
+    Upstream version 1.4.5
+
+ -- Bernd Zeimetz <bzed@debian.org>  Sun, 05 Oct 2014 14:08:36 +0200
+
+freeipmi (1.4.4-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix debian/libipmimonitoring5a.symbols after incomplete
+    SONAME bump (Closes: #760920)
+
+ -- Jonathan Wiltshire <jmw@debian.org>  Tue, 09 Sep 2014 14:33:33 +0100
+
+freeipmi (1.4.4-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add postinsts to replace /usr/share/doc/*
+    with a symlink (Closes: #691439)
+
+ -- Jonathan Wiltshire <jmw@debian.org>  Sun, 07 Sep 2014 13:09:22 +0100
+
+freeipmi (1.4.4-1) unstable; urgency=low
+
+  [ Tollef Fog Heen ]
+  * New upstream release
+    - bump sonames
+    - new tool: ipmi-config
+    - refresh quilt patches
+    - upstream dropped freeipmi-bmc-watchdog logrotate.d snippet,
+      reintroduce as a Debian patch.
+  * Add freeipmi-ipmiseld package.
+  * Adjust dh_fixperms_override call to only be called on binary-indep.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 15 Aug 2014 09:23:03 -0400
+
+freeipmi (1.1.6-1) experimental; urgency=low
+
+  * [35d19e11] Merge tag 'upstream/1.1.6'
+    Upstream version 1.1.6
+  * [b343fe99] Add myself to Uploaders.
+  * [b7ece9fc] Refreshing patches, dropping those which were applied upstream.
+
+ -- Bernd Zeimetz <bzed@debian.org>  Fri, 03 Aug 2012 15:31:39 +0200
+
+freeipmi (1.1.5-4) experimental; urgency=low
+
+  [ Ferenc Wágner ]
+  * Refresh lintian overrides
+  * Fix typo (meta-package) in control file found by lintian
+  * New quilt patch to fix upstream typos found by lintian
+  * debian/control:
+    - remove duplicate Section fields
+    - add myself to Uploaders
+    - add ipmi-pet to freeipmi-tools description
+  * debian/rules:
+    - make mode and ownership change on freeipmi.conf effective
+    - go to debhelper compatibility level 9, but keep away from multiarch
+    - keep both upstream ChangeLogs and provide the changelog symlink
+    - install manpages and documentation via dh_install and make use of
+      --fail-missing
+    - trust dh_installdocs --link-doc to arrange things correctly
+    - clean up unused copy of bmc-watchdog default file to misspelled name
+  * debian/copyright:
+    - Link to versioned licence texts (suggestion by lintian
+      copyright-refers-to-symlink-license)
+  * Install symlinks for dash-separated utility names
+  * debian/source/options:
+    - Ignore files changed during build
+  
+  [ Yaroslav Halchenko ]
+  * Listed the team as the Maintainer and moved myself into Uploaders
+  * Point to team's GIT repository on alioth instead of a private one
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 11 Jul 2012 13:34:54 -0400
+
+freeipmi (1.1.5-3ubuntu7) wily; urgency=medium
+
+  * Don't probe the legacy SMBIOS address in /dev/mem on ARM platforms.
+    (LP: #1499838)
+
+ -- dann frazier <dann.frazier@canonical.com>  Thu, 08 Oct 2015 15:31:28 -0600
+
+freeipmi (1.1.5-3ubuntu6) vivid; urgency=medium
+
+  * No-change rebuild for the libgcrypt20 transition.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Fri, 27 Mar 2015 06:16:15 -0600
+
+freeipmi (1.1.5-3ubuntu5) utopic; urgency=medium
+
+  * debian/patches/freeipmi-uefi.patch: Fix ipmi-locate on non ia64
+    architectures. (LP: #1359285) 
+
+ -- Chuck Short <zulcss@ubuntu.com>  Wed, 20 Aug 2014 12:43:55 -0400
+
+freeipmi (1.1.5-3ubuntu4) utopic; urgency=medium
+
+  * debian/patches/Retry-ssif-reads-as-needed.patch: Retry SSIF reads
+    as needed, LP: #1324992
+
+ -- dann frazier <dann.frazier@canonical.com>  Fri, 30 May 2014 15:53:06 -0600
+
+freeipmi (1.1.5-3ubuntu3) trusty; urgency=medium
+
+  * Use dh-autoreconf to update libtool for ppc64el.
+  * Fix dso linking on the convenience library.
+
+ -- Dimitri John Ledkov <xnox@ubuntu.com>  Tue, 24 Dec 2013 20:06:43 +0000
+
+freeipmi (1.1.5-3ubuntu2) quantal; urgency=low
+
+  * No change rebuild to resolve publication issue. 
+
+ -- Dave Walker (Daviey) <DaveWalker@ubuntu.com>  Tue, 09 Oct 2012 15:03:20 +0100
+
+freeipmi (1.1.5-3ubuntu1) quantal; urgency=low
+
+  * Resolve outstanding MIR issues, LP: #1052056
+
+  [ Andres Rodriguez ]
+  * debian/rules: Build with "-pie,-bindnow"
+  * debian/patches/0002_excel_when_opening_tmp.patch: Open files with O_EXCL.
+
+  [ Dave Walker (Daviey) ]
+  * debian/patches/fix-Wunused-result.patch: Resolve -Wunused-result's 
+    warnings, by checking for non-0 return. 
+
+ -- Dave Walker (Daviey) <DaveWalker@ubuntu.com>  Sun, 07 Oct 2012 22:22:20 +0100
+
+freeipmi (1.1.5-3) unstable; urgency=low
+
+  * Move into packages forgotten:
+    - ipmi-pet to the freeipmi-tools package
+      (Closes: #677546). Thanks Ferenc Wagner for the report
+    - pkgconfig/*.pc files to corresponding -dev pkgs
+    - various manpages, contributed scripts, etc
+  * debian/rules:
+    - added verification step that all "installed" materials
+      are placed into packages (upon dh_installdeb step)
+  * debian/control:
+    - added freeipmi binary meta-package to pull in all components of
+      freeipmi suite
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 14 Jun 2012 15:46:22 -0400
+
+freeipmi (1.1.5-2) unstable; urgency=low
+
+  * Add all ipmi_monitoring*.h to the distribution within
+    libipmonitoring-dev (Closes: #676846).  Thanks Arnaud Quette for the
+    report and a perspective patch
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 10 Jun 2012 22:59:35 -0400
+
+freeipmi (1.1.5-1) unstable; urgency=low
+
+  * New upstream release (Closes: #635508)
+    - GPLv3 licensed now
+    - additional patches: up_fixmanpages
+    - new soversions: libipmimonitoring5, libfreeipmi12
+  * debian/watch: adjusted url
+  * debian/patches: 
+    - adjusted for config files move
+    - 0001-Fix-Wformat-security-warnings.patch to build
+      with hardening flags
+  * debian/copyright: DEP5 + years
+  * debian/control:
+    - version build-dependency on autotools-dev, version 20100122.1
+      deduced from autotools-dev's changelog (Closes: #619248)
+    - boost policy compliance to 3.9.3 -- no further changes
+  * debian/*.symbols: added to overview libraries API changes
+  * debian/rules: use dpkg-buildflags for configure to inject hardening
+    options
+  * debian/control: rely on Pre-Depends: dpkg (>=1.15.7.2~) to avoid
+    safe-guarding of dpkg-maintscript-helper calls in maintainer scripts
+    (Closes: #659756).  Although use of Pre-Depends discouraged by policy
+    common consencus for such use seemed was 'ok':
+    https://lists.debian.org/debian-devel/2011/03/msg00751.html
+  * debian/freeipmi-{common,ipmidetectd}.{{pre,post}inst,prerm}
+    - to take care about moved under /etc/freeipmi configs
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 04 Jun 2012 15:28:41 -0400
+
+freeipmi (0.8.12-3) unstable; urgency=low
+
+  * Drop build-depend on libreadline since it is not used any longer
+    (Closes: #634440). Thanks Lucas!
+  * Re-formated Build-Depends into mutliple lines
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 18 Jul 2011 19:29:26 -0400
+
+freeipmi (0.8.12-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Stop shipping libtool la files in binary packages. Closes: #610134
+    http://wiki.debian.org/ReleaseGoals/LAFileRemoval
+
+ -- Andreas Metzler <ametzler@debian.org>  Sat, 09 Apr 2011 14:38:42 +0200
+
+freeipmi (0.8.12-2) unstable; urgency=low
+
+  * Upload to unstable: this upstream version is robust to 
+    --no-add-needed (Closes: #615716)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 27 Feb 2011 21:03:36 -0500
+
+freeipmi (0.8.12-1) experimental; urgency=low
+
+  * [b3c7c12] Imported Upstream version 0.8.12
+  * [16ce784] Use up-to-date config.{sub,guess} to fix system detection
+    (Closes: #605819)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 24 Dec 2010 22:09:44 -0500
+
+freeipmi (0.8.10-1) experimental; urgency=low
+
+  * [53ba1b1] Imported Upstream version 0.8.10
+    - [d662212] freeipmi- prefix stripped upstream from bmc-watchdog
+                daemon/scripts
+    - [335992b] libfreeipmi soversion advanced from 6 to 10 -- package
+                rename
+    - [4607787] libipmimonitoring soversion advanced from 1 to 4 --
+                package rename
+  * [6a9c9a1] Packaging reverted to be based on tarballs
+    - [99ea590] Use pristine-tar
+    - [95fc33b] Switch to 3.0 (quilt) source format
+    - [bf6be36] Converted changes to bmc-watchdog into a quilt patch
+    - [d6cd92c] Move gbp.conf under debian/
+    - [18a32b4] GIT VCS is not based on CVS any longer. Added NEWS entry
+                about VCS switch
+    - [9076e3f] debian/rules: converted to use dh7
+  * [18a97eb] Boost policy compliance to 3.9.1 -- no changes
+  * [5329ccd] Boost dh compat to 7 for dh_install to operate consistent
+              with previous promises
+  * [971671f] Moving installed manpages listing into .manpages
+  * [8bfd2b0] NEWS entry describing renames
+  * [a925d46] Install all readmes
+  * [488b18b] Fixed up few missing installs
+  * [678b7f0] fixing up chrpath stripping
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 02 Nov 2010 09:42:07 -0400
+
+freeipmi (0.7.17~beta2-1) unstable; urgency=low
+
+  * Fresh (as of 2009/12/07) upstream for 0.7 branch -- includes a few bugfixes
+    on top of 0.7.15-2.  This would be probably the last 0.7 release in Debian
+    sid (0.8 packaging is on the way).
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 17 Jun 2010 12:36:59 -0400
+
+freeipmi (0.7.15-2) unstable; urgency=low
+
+  * Merged upstream's 0.7.16beta1:
+    - Fix for FTBFS on kFreeBSD (closes: #557887). Kudos go
+      to Cyril Brulebois for the report and patch.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 25 Nov 2009 20:18:38 -0500
+
+freeipmi (0.7.15-1) unstable; urgency=low
+
+  * Initial Debian release (closes: #443212)
+  * Taking over ITP which had no activity/replies
+    - debian/control
+      + policy version boost to 3.8.3 from 3.8.0
+      + me in maintainer
+      + tune up descriptions to my liking
+      + added Homepage, Vcs- header fields
+      + freeipmi-common to contain common config file + info/man pages
+    - debian/copyright
+      + list proper copyright holders (not authors)
+    - debian/watch -- added
+    - debian/*.install -- reverted to install tools under /sbin: nothing
+      IPMI-related is destined from poor mortals
+    - abandoned quilt -- raw git for now
+    - Debian-specific init scripts
+  * Fix-up in few manpages (adopted upstream)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 03 Nov 2009 23:16:53 -0500
+
+freeipmi (0.7.9-1~yarik0) UNRELEASED; urgency=low
+
+  * New upstream release
+  * Disabling failing patch
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 08 Jun 2009 15:06:48 -0400
+
+freeipmi (0.6.5-1) UNRELEASED; urgency=low
+
+  * New Upstream Version: 0.6.5
+  * Add ipmi-oem and ipmi-sensors-config into freeipmi-tools package
+  * Remove ipmi-locate.8 patch which was included in upstream
+
+ -- Jean Parpaillon <jean.parpaillon@kerlabs.com>  Wed, 20 Aug 2008 15:53:06 +0200
+
+freeipmi (0.5.1-1) UNRELEASED; urgency=low
+
+  * Initial packaging
+  * Patch ipmi-locate.8 to have the correct section
+  * Depend on quilt for above
+  * Rewritten as per upstream's preferred package split
+
+ -- Matthew Johnson <mjj29@debian.org>  Sat, 12 Jul 2008 19:39:25 +0100
+

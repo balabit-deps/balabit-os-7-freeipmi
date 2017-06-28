@@ -1,0 +1,23 @@
+Description: link convenience library against the main one.
+Author: Dimitri John Ledkov <xnox@ubuntu.com>
+
+--- a/common/toolcommon/Makefile.am
++++ b/common/toolcommon/Makefile.am
+@@ -37,3 +37,5 @@
+ 	tool-sensor-common.h \
+ 	tool-util-common.c \
+ 	tool-util-common.h
++
++libtoolcommon_la_LIBADD = $(top_builddir)/libfreeipmi/libfreeipmi.la
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -5,8 +5,8 @@
+ SUBDIRS = \
+ 	doc \
+ 	etc \
+-	common \
+ 	libfreeipmi \
++	common \
+ 	libipmiconsole \
+ 	libipmimonitoring \
+ 	libipmidetect \
