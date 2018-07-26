@@ -8,7 +8,8 @@ Build-Depends: debhelper (>= 9),
  autotools-dev (>= 20100122.1~),
  dh-autoreconf,
  libgcrypt11-dev,
- chrpath
+ chrpath,
+ texinfo
 Standards-Version: 3.9.3
 Homepage: http://www.gnu.org/software/freeipmi/
 Vcs-Browser: http://git.debian.org/?p=pkg-freeipmi/pkg-freeipmi.git
