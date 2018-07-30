@@ -1,3 +1,9 @@
+freeipmi (1.4.11-1.1ubuntu4bb1) bionic; urgency=medium
+
+  * Balabit patched version
+
+ -- Balabit Platform Team <devnull@dev.null>  Mon, 30 Jul 2018 11:48:51 +0200
+
 freeipmi (1.4.11-1.1ubuntu4) artful; urgency=medium
 
   * Use kernel DMI table interface, when available, instead of trolling
