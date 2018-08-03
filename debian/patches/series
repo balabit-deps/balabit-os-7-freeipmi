@@ -3,3 +3,9 @@ dso-linking.patch
 ipv6-ipmipower
 ipv6-ipmi-discovery
 Using-DMI-firmware-in-sysfs-if-exists.patch
+0001-Fix-acpi-spmi-searching-corner-case.patch
+0002-Don-t-try-to-separate-the-header-from-the-ACPI-table.patch
+0003-Split-RSDT-XSDT-parsing-into-new-function.patch
+0004-Add-support-for-parsing-SPMI-tables-exposed-via-sysf.patch
+0005-Allow-sysfs-SPMI-parsing-on-ARM-platforms.patch
+0006-Correct-order-of-bytes-in-specification_revision-fie.patch
