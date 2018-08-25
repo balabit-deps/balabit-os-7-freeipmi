@@ -1,0 +1,64 @@
+From 40ba578f898ccaeaea0488a408d63749dd979dc2 Mon Sep 17 00:00:00 2001
+From: dann frazier <dann.frazier@canonical.com>
+Date: Wed, 1 Aug 2018 11:01:12 -0600
+Subject: [PATCH 6/6] Correct order of bytes in specification_revision field of
+ ACPI SPMI table
+
+According to section C3-1 in the IPMI specification, the
+"Specification Revision (version)" field consistes of 2 bytes that:
+
+"Identifies the IPMI specification revision, in BCD format, to which the
+interface was designed. The first byte holds the most significant digits
+of the revision, e.g., a a value of 0x0150 indicates the interface is
+compatible with IPMI version v1.5."
+
+Based on that reading alone, the current template looks correct. However,
+earlier in the same section we have the text:
+
+"Per [ACPI 2.0], unless otherwise specified, numeric values for the table
+or structures are always encoded in little endian format."
+
+It isn't clear to me if this was intended to apply to the "Specification
+Revision" field or not. I mean, they are numeric values - but does the
+text "in BCD format" and "The first byte holds the most significant digits"
+trigger the "unless otherwise specified" exception?
+
+Luckily, a sample of several BIOS's suggests vendors have implemented this
+consistently, using little endian format:
+
++-------------------------------------------------------------------+
+| System                  | IPMI Ver (SMBIOS) | ACPI Spec Rev Bytes |
+| HiSilicon D06           |               N/A | 00 02               |
+| HP ProLiant DL165 G7[*] |               1.5 | 00 01               |
+| HP ProLiant DL385 G7    |               2.0 | 00 02               |
+| QuantaGrid D52B         |               2.0 | 00 02               |
+| Supermicro Super Server |               2.0 | 00 02               |
++-------------------------------------------------------------------+
+[*] Clearly the SMBIOS and ACPI data here are inconsistent but, IMO,
+"1.0" seems to be more likely the intent, vs. 0.1.
+
+Without this change, ipmi-locate will report specifications of 0.1 and
+0.2 instead of 1.0 and 2.0 on the sampled systems (all parsing done
+via sysfs).
+---
+ ChangeLog                                  | 3 +++
+ libfreeipmi/locate/ipmi-locate-acpi-spmi.c | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/libfreeipmi/locate/ipmi-locate-acpi-spmi.c b/libfreeipmi/locate/ipmi-locate-acpi-spmi.c
+index a89b16af6..b104869b1 100644
+--- a/libfreeipmi/locate/ipmi-locate-acpi-spmi.c
++++ b/libfreeipmi/locate/ipmi-locate-acpi-spmi.c
+@@ -184,8 +184,8 @@ fiid_template_t tmpl_acpi_spmi_table_descriptor =
+        e.g. a value of 0x0150 indicates the interface is
+        compatible with IPMI version v1.5. */
+     /*     {16, "specification_revision", FIID_FIELD_REQUIRED | FIID_FIELD_LENGTH_FIXED},  */
+-    { 8, "specification_revision.major", FIID_FIELD_REQUIRED | FIID_FIELD_LENGTH_FIXED},
+     { 8, "specification_revision.minor", FIID_FIELD_REQUIRED | FIID_FIELD_LENGTH_FIXED},
++    { 8, "specification_revision.major", FIID_FIELD_REQUIRED | FIID_FIELD_LENGTH_FIXED},
+     /* Interrupt type(s) used by
+        the interface:
+        [0] - SCI triggered through GPE
+-- 
+2.18.0
+
