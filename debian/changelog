@@ -1,3 +1,9 @@
+freeipmi (1.4.11-1.1ubuntu4.1bb1) bionic; urgency=medium
+
+  * Balabit patched version
+
+ -- Balabit Platform Team <devnull@dev.null>  Sat, 25 Aug 2018 04:25:02 +0200
+
 freeipmi (1.4.11-1.1ubuntu4.1) bionic; urgency=medium
 
   * Cherry-pick patches from upstream that add support to ipmi-locate
